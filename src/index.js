@@ -29,28 +29,64 @@ import Login from "views/examples/Login.jsx";
 import Profile from "views/examples/Profile.jsx";
 import Register from "views/examples/Register.jsx";
 
+import Home from "views/examples/Home.jsx";
+// import Home1 from "views/examples/Home1.jsx";
+
+import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
+import CardsFooter from "components/Footers/CardsFooter.jsx";
+import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+
+
 ReactDOM.render(
   <BrowserRouter>
+
+    {/* <DemoNavbar /> */}
+    
     <Switch>
-      <Route path="/" exact render={props => <Index {...props} />} />
+      
+      <Route 
+      path="/" 
+      exact 
+      render={props => <Index {...props} />} 
+      />
+
       <Route
         path="/landing-page"
         exact
         render={props => <Landing {...props} />}
       />
-      <Route path="/login-page" exact render={props => <Login {...props} />} />
+
+      <Route
+        path="/home"
+        exact
+        render={props => <Home {...props} />}
+      />
+
+      <Route 
+      path="/login-page" 
+      exact 
+      render={props => <Login {...props} />} 
+      />
+
       <Route
         path="/profile-page"
         exact
         render={props => <Profile {...props} />}
       />
+
       <Route
         path="/register-page"
         exact
         render={props => <Register {...props} />}
       />
+
       <Redirect to="/" />
+
     </Switch>
+
+    {/* <SimpleFooter /> */}
+
   </BrowserRouter>,
+  
   document.getElementById("root")
 );
