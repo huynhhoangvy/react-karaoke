@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
   Card, 
   CardImg, 
-  CardText, 
+  // CardText, 
   CardBody,
   CardTitle, 
-  CardSubtitle, 
-  Button 
+  // CardSubtitle, 
+  // Button 
 } from 'reactstrap';
 
 function VideoCard(props) {
@@ -16,15 +16,18 @@ function VideoCard(props) {
   // })
   return (
     <>
-    <Card>
-      <CardBody>
-        <CardTitle><a href={props.props.url}>{props.props.title}</a></CardTitle>
-        {/* <a href={props.url} >link</a> */}
-      </CardBody>
-    </Card>
+    {console.log(props)}
+    <div>
+      <Card>
+        <CardImg style={{width: "480px", height: "360px"}} src={props.props.snippet.thumbnails.high.url} alt="Card image cap" />
+        <CardBody>
+          <CardTitle><a href={`https://www.youtube.com/watch?v=${props.props.id.videoId}`}>{props.props.snippet.title}</a></CardTitle>
+          {/* <a href={props.url} >link</a> */}
+        </CardBody>
+      </Card>
+    </div>
     </>
       // <Card key={props.props.id.videoId}>
-      //   <CardImg top width="100%" src={props.props.snippet.thumbnails.high.url} alt="Card image cap" />
       //   <CardBody>
       //     <CardTitle>{props.props.snippet.title}</CardTitle>
       //     <CardSubtitle>Card subtitle</CardSubtitle>

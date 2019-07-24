@@ -6,7 +6,7 @@ import CardsFooter from "components/Footers/CardsFooter.jsx";
 import Carousel from "../IndexSections/Carousel.jsx"
 import VideoCard from 'views/IndexSections/VideoCard.jsx';
 
-const useYoutubeApi = (initialData, initialUrl) => {
+const useDataApi = (initialData, initialUrl) => {
   const [data, setData] = useState(initialData);
   const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +19,7 @@ const useYoutubeApi = (initialData, initialUrl) => {
     try {
       const result = await axios(url);
       console.log('result: ', result);
-      setData(result.data.hits);
+      setData(result.data.items);
     } catch(error) {
       setIsError(true);
     }
@@ -35,8 +35,8 @@ const useYoutubeApi = (initialData, initialUrl) => {
 
 export default function Home() {
   const myRef = useRef(null);
-  const [query, setQuery] = useState('redux');
-  const [{ data, isLoading, isError }, doFetch] = useYoutubeApi({}, 'https://hn.algolia.com/api/v1/search?query=redux');
+  const [query, setQuery] = useState('');
+  const [{ data, isLoading, isError }, doFetch] = useDataApi({}, 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyBNy_6mgtN9oX50FZNU6XcbW_0eF8aASTI&part=snippet&maxResults=12&q=trinh,cong,son,karaoke');
 
   return (
     <>
@@ -46,7 +46,7 @@ export default function Home() {
         <Carousel />
         <div className="bg-secondary">
           <form onSubmit={event => {
-            doFetch(`https://hn.algolia.com/api/v1/search?query=${query}`);
+            doFetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyBNy_6mgtN9oX50FZNU6XcbW_0eF8aASTI&part=snippet&maxResults=12&q=${query},karaoke`);
             
             event.preventDefault();
             }}>
@@ -59,9 +59,9 @@ export default function Home() {
           {isLoading ? 
           <h1>Loading...</h1>
           : 
-          <ul>
-            {data.map(item => <VideoCard props={item} key={item.objectID} />)}
-          </ul>
+          <div className="bg-secondary d-flex flex-wrap">
+            {data.map(item => <VideoCard props={item} key={item.kind.videoId} />)}
+          </div>
           }
         {/* <Row style={{padding: "15px 0px"}}>
           <Col sm="4">
