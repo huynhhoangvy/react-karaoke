@@ -30,11 +30,10 @@ import Profile from "views/examples/Profile.jsx";
 import Register from "views/examples/Register.jsx";
 
 import Home from "views/examples/Home.jsx";
-// import Home1 from "views/examples/Home1.jsx";
 
-import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
-import CardsFooter from "components/Footers/CardsFooter.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+// import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
+// import CardsFooter from "components/Footers/CardsFooter.jsx";
+// import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 
 
 ReactDOM.render(

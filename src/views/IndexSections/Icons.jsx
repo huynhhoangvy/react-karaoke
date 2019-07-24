@@ -38,7 +38,7 @@ class Icons extends React.Component {
                 <div className="btn-wrapper">
                   <Button
                     color="primary"
-                    href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/icons?ref=adsr-landing-page"
+                    href=""
                   >
                     View demo icons
                   </Button>
@@ -54,7 +54,7 @@ class Icons extends React.Component {
               </Col>
             </Row>
             <div className="blur--hover">
-              <a href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/icons?ref=adsr-landing-page">
+              <a href="">
                 <div className="icons-container blur-item mt-5 on-screen">
                   <i className="icon ni ni-diamond" />
                   <i className="icon icon-sm ni ni-album-2" />
