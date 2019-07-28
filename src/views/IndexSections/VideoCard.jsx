@@ -9,24 +9,44 @@ import {
   // Button 
 } from 'reactstrap';
 
-function VideoCard(props) {
-  // const [data, setData] = useState([props])
-  // useEffect(() => {
 
-  // })
+function VideoCard({ data, addSong, superAddSong }) {
+  // const [selectedSongList, setSelectedSongList] = useState([]);
+
   return (
-    <>
-    {console.log(props)}
-    <div>
-      <Card>
-        <CardImg style={{width: "480px", height: "360px"}} src={props.props.snippet.thumbnails.high.url} alt="Card image cap" />
-        <CardBody>
-          <CardTitle><a href={`https://www.youtube.com/watch?v=${props.props.id.videoId}`}>{props.props.snippet.title}</a></CardTitle>
-          {/* <a href={props.url} >link</a> */}
-        </CardBody>
-      </Card>
+    <div className="bg-secondary d-flex flex-wrap">
+      {data.map(data => (
+        <Card key={data.kind.id}>
+          <CardImg 
+          style={{width: "320px", height: "180px"}} 
+          src={data.snippet.thumbnails.medium.url} 
+          alt="Card image cap" 
+          />
+          <CardBody>
+            <CardTitle>
+              <a href={`https://www.youtube.com/watch?v=$.props.id.videoId}`}>
+                {data.snippet.title}
+              </a>
+            </CardTitle>
+            <button 
+            onClick={() => {
+              addSong(data.snippet.title);
+            }}
+            >
+              Add
+            </button>
+            <button 
+            onClick={() => {
+              superAddSong(data.snippet.title);
+            }}
+            >
+              Super Add
+            </button>
+          </CardBody>
+        </Card>
+      ))}
+      
     </div>
-    </>
       // <Card key={props.props.id.videoId}>
       //   <CardBody>
       //     <CardTitle>{props.props.snippet.title}</CardTitle>
