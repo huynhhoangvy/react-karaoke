@@ -24,20 +24,20 @@ function VideoCard({ data, addSong, superAddSong }) {
           />
           <CardBody>
             <CardTitle>
-              <a href={`https://www.youtube.com/watch?v=$.props.id.videoId}`}>
+              <a href={`https://www.youtube.com/watch?v=${data.id.videoId}`}>
                 {data.snippet.title}
               </a>
             </CardTitle>
             <button 
             onClick={() => {
-              addSong(data.snippet.title);
+              addSong({id: data.id.videoId, title: data.snippet.title});
             }}
             >
               Add
             </button>
             <button 
             onClick={() => {
-              superAddSong(data.snippet.title);
+              superAddSong({id: data.id.videoId, title: data.snippet.title});
             }}
             >
               Super Add

@@ -14,6 +14,9 @@ const useSongListState = initialValue => {
         removeSong: songIndex => {
             const newSongList = songList.filter((_, index) => index !== songIndex);
             setSongList(newSongList);
+        },
+        setSongList: songList => {
+            setSongList(songList);
         }
     }
 };
