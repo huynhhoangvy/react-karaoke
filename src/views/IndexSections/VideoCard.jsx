@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+  Button,
   Card, 
   CardImg, 
   // CardText, 
@@ -28,20 +29,20 @@ function VideoCard({ data, addSong, superAddSong }) {
                 {data.snippet.title}
               </a>
             </CardTitle>
-            <button 
+            <Button 
             onClick={() => {
               addSong({id: data.id.videoId, title: data.snippet.title});
             }}
             >
               Add
-            </button>
-            <button 
+            </Button>
+            <Button 
             onClick={() => {
               superAddSong({id: data.id.videoId, title: data.snippet.title});
             }}
             >
               Super Add
-            </button>
+            </Button>
           </CardBody>
         </Card>
       ))}

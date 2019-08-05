@@ -17,8 +17,13 @@ const useSongListState = initialValue => {
         },
         setSongList: songList => {
             setSongList(songList);
+        },
+        getNextSongId: () => {
+            if (songList.length > 0) {
+                return songList[0].id;
+            } else return '8WYETWrOZW8';
         }
     }
 };
 
-export default useSongListState
+export default useSongListState;

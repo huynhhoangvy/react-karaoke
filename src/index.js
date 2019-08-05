@@ -46,13 +46,13 @@ ReactDOM.render(
       <Route 
       path="/" 
       exact 
-      render={props => <Index {...props} />} 
+      render={props => <Landing {...props} />} 
       />
 
       <Route
-        path="/landing-page"
+        path="/index"
         exact
-        render={props => <Landing {...props} />}
+        render={props => <Index {...props} />}
       />
 
       <Route

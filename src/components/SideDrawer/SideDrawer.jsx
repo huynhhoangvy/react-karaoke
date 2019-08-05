@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+import {Button} from 'reactstrap';
+
 import './SideDrawer.css';
 
 const reorder = (list, startIndex, endIndex) => {
@@ -79,6 +81,11 @@ export default function SideDrawer(props) {
                                                     )}
                                                 >
                                                     {song.title}
+                                                    <Button
+                                                    onClick={() => props.removeSong(index)}
+                                                    >
+                                                        Delete
+                                                    </Button>
                                                 </div>
                                             )}
                                         </Draggable>
