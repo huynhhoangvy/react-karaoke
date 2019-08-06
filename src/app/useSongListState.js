@@ -21,7 +21,7 @@ const useSongListState = initialValue => {
         getNextSongId: () => {
             if (songList.length > 0) {
                 return songList[0].id;
-            } else return '8WYETWrOZW8';
+            }
         }
     }
 };

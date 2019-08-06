@@ -18,6 +18,7 @@ import useSongListState from 'app/useSongListState';
 
 export default function Home() {
   const myRef = useRef(null);
+  const carouselRef = useRef();
   const [query, setQuery] = useState('');
   const [{ data, isLoading, isError }, doFetch] = useDataApi([], 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyBNy_6mgtN9oX50FZNU6XcbW_0eF8aASTI&part=snippet&maxResults=12&q=trinh,cong,son,karaoke');
   // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -35,6 +36,10 @@ export default function Home() {
     setSideDrawerOpen(false)
   }
 
+  const foo = () => {
+    carouselRef.current.getAlert();
+  }
+
   return (
     <>
       <DemoNavbar />
@@ -43,6 +48,7 @@ export default function Home() {
         setSongList={setSongList}
         show={sideDrawerOpen} 
         removeSong={removeSong}
+        getAlert={foo}
       />
       {sideDrawerOpen
         &&
@@ -68,6 +74,7 @@ export default function Home() {
 
         
         <Carousel 
+          ref={carouselRef}
           songList={songList} 
           removeSong={removeSong}
           getNextSongId={getNextSongId}
@@ -94,6 +101,7 @@ export default function Home() {
             sidedrawer>
           </button>
           <button className="btn btn-info sticky-top" style={{ position: "fixed", right: "20px", bottom: "20px", marginTop: "690px", }}>^</button>
+        {/* <Button onClick={() => carouselRef.current.getAlert()}>Alert</Button> */}
           {/* <Button className="btn btn-danger float-right">Example Button floated right</Button> */}
           {/* <div className="fixed-action-btn">
                 <a href="#!" className="btn-floating red">

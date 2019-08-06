@@ -55,6 +55,7 @@ export default function SideDrawer(props) {
     return (
         <div className={drawerClasses}>
             {console.log('is songList empty: ', Array.isArray(props.songList))}
+            <Button onClick={() => props.getAlert()}>Next</Button>
             {!props.songList.length
                 ? <h1>no song added</h1>
                 :

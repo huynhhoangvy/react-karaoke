@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from "react";
 
 // reactstrap components
 import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
@@ -37,30 +37,27 @@ const items = [
   }
 ];
 
-function Carousel({ songList, removeSong, getNextSongId }) { 
+const Carousel = forwardRef(({ songList, removeSong, getNextSongId }, ref) => { 
   console.log('ABC: ', songList.length)
 
-  // const [songListData, setSongListData] = useState(songList)
-  const [nextSongId, setNextSongId] = useState(getNextSongId());
+  const [nextSongId, setNextSongId] = useState('t-8_FIFcefo');
+  // const [nextSongId, setNextSongId] = useState(getNextSongId());
   const [isPlayerEnded, setIsPlayerEnded] = useState(false);
 
   const onPlayerReady = (event) => {
     console.log('heloooooooooooooooooooooooooooo')
     event.target.playVideo();
   }
-
-  // let foo;
-
-  // const bar = props => {
-
-  // }
-
-  // if (isPlayerEnded && songList.length > 0) {
-  //   return setNextSongId(songList[0].id);
-  // }
+  
+  useImperativeHandle(ref, () => ({
+    getAlert() {
+      alert('alert from child');
+    }
+  }));
 
   const playNextSong = () => {
     setNextSongId(() => getNextSongId());
+    removeSong(0);
   }
 
   console.log('isplayerended: ', isPlayerEnded, ' songlist.length ', songList.length);
@@ -87,25 +84,19 @@ function Carousel({ songList, removeSong, getNextSongId }) {
         setNextSongId(() => getNextSongId());
         removeSong(0);
         setIsPlayerEnded(true);
-        // toggleYoutubePlayer();
         break;
       case 1:
         console.log('video playing from ');
         setIsPlayerEnded(false);
-        // toggleYoutubePlayer();
         break;
       case 2:
         console.log('video paused at ');
-        // setIsPlaying(false);
-        // toggleYoutubePlayer();
         break;
       case 3:
         console.log('video is buffering ');
-        // toggleYoutubePlayer();
         break;
       case 5:
         console.log('video cued ');
-        // toggleYoutubePlayer();
         break;
       default:
         return;
@@ -143,6 +134,7 @@ function Carousel({ songList, removeSong, getNextSongId }) {
                 onReady={onPlayerReady}
                 onStateChange={onPlayerStateChange}
               />
+              <Button onClick={() => playNextSong()}>Skip</Button>
               {/* <h1 className="text-white font-weight-light">
                   Bootstrap carousel
                 </h1>
@@ -183,7 +175,7 @@ function Carousel({ songList, removeSong, getNextSongId }) {
       </section>
     </>
   );
-}
+})
 // }
 
 export default Carousel;
