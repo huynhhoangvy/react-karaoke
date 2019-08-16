@@ -30,6 +30,7 @@ import Profile from "views/examples/Profile.jsx";
 import Register from "views/examples/Register.jsx";
 
 import Home from "views/examples/Home.jsx";
+import Test from "views/examples/Test"
 
 // import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 // import CardsFooter from "components/Footers/CardsFooter.jsx";
@@ -77,6 +78,12 @@ ReactDOM.render(
         path="/register-page"
         exact
         render={props => <Register {...props} />}
+      />
+
+      <Route
+        path="/test"
+        exact
+        render={props => <Test {...props} />}
       />
 
       <Redirect to="/" />

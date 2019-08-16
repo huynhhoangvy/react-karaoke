@@ -20,7 +20,7 @@ export default function Home() {
   const myRef = useRef(null);
   const carouselRef = useRef();
   const [query, setQuery] = useState('');
-  const [{ data, isLoading, isError }, doFetch] = useDataApi([], 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyBNy_6mgtN9oX50FZNU6XcbW_0eF8aASTI&part=snippet&maxResults=12&q=trinh,cong,son,karaoke');
+  const [{ data, isLoading, isError }, doFetch] = useDataApi([], 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyBNy_6mgtN9oX50FZNU6XcbW_0eF8aASTI&part=snippet&maxResults=12&q=nhac,tre,karaoke');
   // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // const [colGrid, setColGrid] = useState('col-12');
   const { songList, addSong, superAddSong, removeSong, setSongList, getNextSongId } = useSongListState([]);
