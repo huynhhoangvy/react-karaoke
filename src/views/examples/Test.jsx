@@ -12,7 +12,7 @@ export default function Test () {
         <Container>
             <Button>Get</Button>
             <Button onClick={() => testPost()}>Post</Button>
-            {/* <Button onClick={() => put()}>Put</Button> */}
+            <Button>Put</Button>
             <Button>Delete</Button>
         </Container>
     );

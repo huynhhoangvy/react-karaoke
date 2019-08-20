@@ -73,6 +73,58 @@ export default function useServerMethod () {
                     console.error(error);
             }
         },
+        postRegisterData: async (data) => {
+            try {
+                const url = 'http://localhost:5000/users/register';
+                // const data = {'foo': 'bar'};
+                const settings = {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                }
+                const response = await fetch(url, settings)
+                const json = await response.json()
+                if (response.ok) {
+                    console.log('response okeee', json);
+                    console.log('print response: ', response);
+                    return json;
+                    // return response
+                } else {
+                    console.log(response);
+                }
+            } catch (error) {
+                    console.error(error);
+            }
+        },
+        postLoginData: async (data) => {
+            try {
+                const url = 'http://localhost:5000/users/login';
+                // const data = {'foo': 'bar'};
+                const settings = {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                }
+                const response = await fetch(url, settings)
+                const json = await response.json()
+                if (response.ok) {
+                    console.log('response okeee', json);
+                    console.log('print response: ', response);
+                    return json;
+                    // return response
+                } else {
+                    console.log(response);
+                }
+            } catch (error) {
+                    console.error(error);
+            }
+        },
         put: async () => {
             try {
                 const url = 'http://localhost:5000/lang/javascript';

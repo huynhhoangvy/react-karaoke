@@ -1,9 +1,9 @@
-export default function validate(values) {
+export default function loginValidate(values) {
     let errors = {};
-    if (!values.email) {
-      errors.email = 'Email address is required';
-    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      errors.email = 'Email address is invalid';
+    if (!values.username) {
+      errors.username = 'Username is required';
+    } else if (values.password.length < 3) {
+      errors.username = 'Username must be 3 or characters';
     }
     if (!values.password) {
       errors.password = 'Password is required';

@@ -38,7 +38,8 @@ import {
 import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 import useForm from "app/useForm";
-import validate from 'app/LoginFormValidationRule';
+import registerValidate from 'app/RegisterFormValidationRules';
+import useServerMethod from 'app/server';
 
 function Register () {
   // componentDidMount() {
@@ -48,17 +49,19 @@ function Register () {
   // }
 
   const myRef = useRef(null);
-  const [foo, setFoo] = useState('');
+
+  const { postRegisterData } = useServerMethod();
 
   const {
     values,
     errors,
     handleChange,
-    handleSubmit,
-  } = useForm(login, validate);
+    handleRegisterSubmit,
+  } = useForm(register, registerValidate);
 
-  function login() {
+  function register() {
     console.log('No errors, submit callback called! ', values);
+    postRegisterData(values);
   }
   
     return (
@@ -121,7 +124,7 @@ function Register () {
                       </div>
                       <Form 
                         role="form"
-                        onSubmit={handleSubmit}
+                        onSubmit={handleRegisterSubmit}
                       >
                         <FormGroup>
                           <InputGroup className="input-group-alternative mb-3">
@@ -131,14 +134,13 @@ function Register () {
                               </InputGroupText>
                             </InputGroupAddon>
                             <Input 
-                            placeholder="Name" 
+                            placeholder="Username" 
                             type="text" 
-                            value={foo}
                             autoComplete="off" 
-                            className={`input ${errors.name && 'is-danger'}`} 
-                            name="name" 
+                            className={`input ${errors.username && 'is-danger'}`} 
+                            name="username" 
                             onChange={handleChange} 
-                            value={values.name || ''} 
+                            value={values.username || ''} 
                             required 
                             />
                           </InputGroup>

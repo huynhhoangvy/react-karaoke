@@ -12,7 +12,13 @@ const useForm = (callback, validate) => {
     }
   }, [errors]);
 
-  const handleSubmit = (event) => {
+  const handleRegisterSubmit = (event) => {
+    if (event) event.preventDefault();
+    setErrors(validate(values));
+    setIsSubmitting(true);
+  };
+
+  const handleLoginSubmit = (event) => {
     if (event) event.preventDefault();
     setErrors(validate(values));
     setIsSubmitting(true);
@@ -25,7 +31,8 @@ const useForm = (callback, validate) => {
 
   return {
     handleChange,
-    handleSubmit,
+    handleRegisterSubmit,
+    handleLoginSubmit,
     values,
     errors,
   }

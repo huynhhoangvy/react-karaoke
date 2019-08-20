@@ -38,7 +38,8 @@ import {
 import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 import useForm from "app/useForm";
-import validate from 'app/LoginFormValidationRule';
+import loginValidate from 'app/LoginFormValidationRules';
+import useServerMethod from 'app/server';
 
 function Login () {
   // componentDidMount() {
@@ -49,15 +50,18 @@ function Login () {
 
   const myRef = useRef(null);
 
+  const { postLoginData } = useServerMethod();
+
   const {
     values,
     errors,
+    handleLoginSubmit,
     handleChange,
-    handleSubmit,
-  } = useForm(login, validate);
+  } = useForm(login, loginValidate);
 
   function login() {
-    console.log('No errors, submit callback called! ', values);
+    console.log('No errors, submit callback called! Print values: ', values);
+    postLoginData(values)
   }
 
     return (
@@ -118,26 +122,24 @@ function Login () {
                       <div className="text-center text-muted mb-4">
                         <small>Or sign in with credentials</small>
                       </div>
-                      <Form role="form" onSubmit={handleSubmit}>
-                        <FormGroup className="mb-3">
-                          <InputGroup className="input-group-alternative">
+                      <Form role="form" onSubmit={handleLoginSubmit}>
+                      <FormGroup>
+                          <InputGroup className="input-group-alternative mb-3">
                             <InputGroupAddon addonType="prepend">
                               <InputGroupText>
-                                <i className="ni ni-email-83" />
+                                <i className="ni ni-hat-3" />
                               </InputGroupText>
                             </InputGroupAddon>
                             <Input 
-                              autoComplete="off" 
-                              className={`input ${errors.email && 'is-danger'}`} 
-                              type="email" 
-                              name="email" 
-                              onChange={handleChange} 
-                              value={values.email || ''} 
-                              required  
+                            placeholder="Username" 
+                            type="text" 
+                            autoComplete="off" 
+                            className={`input ${errors.username && 'is-danger'}`} 
+                            name="username" 
+                            onChange={handleChange} 
+                            value={values.username || ''} 
+                            required 
                             />
-                            {errors.email && (
-                              <small className="help text-danger">{errors.email}</small>
-                            )}
                           </InputGroup>
                         </FormGroup>
                         <FormGroup>
@@ -148,8 +150,10 @@ function Login () {
                               </InputGroupText>
                             </InputGroupAddon>
                             <Input
+                              placeholder="Password"
+                              type="password"
+                              autoComplete="off"
                               className={`input ${errors.password && 'is-danger'}`} 
-                              type="password" 
                               name="password" 
                               onChange={handleChange} 
                               value={values.password || ''} 
