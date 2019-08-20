@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useRef } from "react";
 
 // reactstrap components
 import {
@@ -37,18 +37,33 @@ import {
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import useForm from "app/useForm";
+import validate from 'app/LoginFormValidationRule';
 
-class Login extends React.Component {
-  componentDidMount() {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.main.scrollTop = 0;
+function Login () {
+  // componentDidMount() {
+  //   document.documentElement.scrollTop = 0;
+  //   document.scrollingElement.scrollTop = 0;
+  //   this.refs.main.scrollTop = 0;
+  // }
+
+  const myRef = useRef(null);
+
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+  } = useForm(login, validate);
+
+  function login() {
+    console.log('No errors, submit callback called! ', values);
   }
-  render() {
+
     return (
       <>
         <DemoNavbar />
-        <main ref="main">
+        <main ref={myRef}>
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">
               <span />
@@ -103,7 +118,7 @@ class Login extends React.Component {
                       <div className="text-center text-muted mb-4">
                         <small>Or sign in with credentials</small>
                       </div>
-                      <Form role="form">
+                      <Form role="form" onSubmit={handleSubmit}>
                         <FormGroup className="mb-3">
                           <InputGroup className="input-group-alternative">
                             <InputGroupAddon addonType="prepend">
@@ -111,7 +126,18 @@ class Login extends React.Component {
                                 <i className="ni ni-email-83" />
                               </InputGroupText>
                             </InputGroupAddon>
-                            <Input placeholder="Email" type="email" />
+                            <Input 
+                              autoComplete="off" 
+                              className={`input ${errors.email && 'is-danger'}`} 
+                              type="email" 
+                              name="email" 
+                              onChange={handleChange} 
+                              value={values.email || ''} 
+                              required  
+                            />
+                            {errors.email && (
+                              <small className="help text-danger">{errors.email}</small>
+                            )}
                           </InputGroup>
                         </FormGroup>
                         <FormGroup>
@@ -122,10 +148,16 @@ class Login extends React.Component {
                               </InputGroupText>
                             </InputGroupAddon>
                             <Input
-                              placeholder="Password"
-                              type="password"
-                              autoComplete="off"
+                              className={`input ${errors.password && 'is-danger'}`} 
+                              type="password" 
+                              name="password" 
+                              onChange={handleChange} 
+                              value={values.password || ''} 
+                              required
                             />
+                            {errors.password && (
+                              <small className="help text-danger">{errors.password}</small>
+                            )}
                           </InputGroup>
                         </FormGroup>
                         <div className="custom-control custom-control-alternative custom-checkbox">
@@ -145,7 +177,7 @@ class Login extends React.Component {
                           <Button
                             className="my-4"
                             color="primary"
-                            type="button"
+                            type="submit"
                           >
                             Sign in
                           </Button>
@@ -182,6 +214,5 @@ class Login extends React.Component {
       </>
     );
   }
-}
 
 export default Login;

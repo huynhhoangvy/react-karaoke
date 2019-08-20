@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useRef, useState } from "react";
 
 // reactstrap components
 import {
@@ -37,18 +37,34 @@ import {
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import useForm from "app/useForm";
+import validate from 'app/LoginFormValidationRule';
 
-class Register extends React.Component {
-  componentDidMount() {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.main.scrollTop = 0;
+function Register () {
+  // componentDidMount() {
+  //   document.documentElement.scrollTop = 0;
+  //   document.scrollingElement.scrollTop = 0;
+  //   this.refs.main.scrollTop = 0;
+  // }
+
+  const myRef = useRef(null);
+  const [foo, setFoo] = useState('');
+
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+  } = useForm(login, validate);
+
+  function login() {
+    console.log('No errors, submit callback called! ', values);
   }
-  render() {
+  
     return (
       <>
         <DemoNavbar />
-        <main ref="main">
+        <main ref={myRef}>
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">
               <span />
@@ -103,7 +119,10 @@ class Register extends React.Component {
                       <div className="text-center text-muted mb-4">
                         <small>Or sign up with credentials</small>
                       </div>
-                      <Form role="form">
+                      <Form 
+                        role="form"
+                        onSubmit={handleSubmit}
+                      >
                         <FormGroup>
                           <InputGroup className="input-group-alternative mb-3">
                             <InputGroupAddon addonType="prepend">
@@ -111,7 +130,17 @@ class Register extends React.Component {
                                 <i className="ni ni-hat-3" />
                               </InputGroupText>
                             </InputGroupAddon>
-                            <Input placeholder="Name" type="text" />
+                            <Input 
+                            placeholder="Name" 
+                            type="text" 
+                            value={foo}
+                            autoComplete="off" 
+                            className={`input ${errors.name && 'is-danger'}`} 
+                            name="name" 
+                            onChange={handleChange} 
+                            value={values.name || ''} 
+                            required 
+                            />
                           </InputGroup>
                         </FormGroup>
                         <FormGroup>
@@ -121,7 +150,19 @@ class Register extends React.Component {
                                 <i className="ni ni-email-83" />
                               </InputGroupText>
                             </InputGroupAddon>
-                            <Input placeholder="Email" type="email" />
+                            <Input 
+                              placeholder="Email" 
+                              type="email" 
+                              autoComplete="off" 
+                              className={`input ${errors.email && 'is-danger'}`} 
+                              name="email" 
+                              onChange={handleChange} 
+                              value={values.email || ''} 
+                              required  
+                            />
+                            {errors.email && (
+                              <small className="help text-danger">{errors.email}</small>
+                            )}
                           </InputGroup>
                         </FormGroup>
                         <FormGroup>
@@ -135,7 +176,15 @@ class Register extends React.Component {
                               placeholder="Password"
                               type="password"
                               autoComplete="off"
+                              className={`input ${errors.password && 'is-danger'}`} 
+                              name="password" 
+                              onChange={handleChange} 
+                              value={values.password || ''} 
+                              required
                             />
+                            {errors.password && (
+                              <small className="help text-danger">{errors.password}</small>
+                            )}
                           </InputGroup>
                         </FormGroup>
                         <div className="text-muted font-italic">
@@ -175,7 +224,7 @@ class Register extends React.Component {
                           <Button
                             className="mt-4"
                             color="primary"
-                            type="button"
+                            type="submit"
                           >
                             Create account
                           </Button>
@@ -192,6 +241,5 @@ class Register extends React.Component {
       </>
     );
   }
-}
 
 export default Register;
