@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 
-export default function SearchForm() {
+export default function SearchForm({ onSubmit, value, onChange }) {
     const [searchFocused, setSearchFocused] = useState(false);
     return(
         <>
@@ -16,6 +16,7 @@ export default function SearchForm() {
                 className={classnames({
                 focused: searchFocused
                 })}
+                onSubmit={onSubmit}
             >
                 <InputGroup className="mb-4">
                 <InputGroupAddon addonType="prepend">
@@ -26,6 +27,8 @@ export default function SearchForm() {
                 <Input
                     placeholder="Search"
                     type="text"
+                    value={value}
+                    onChange={onChange}
                     onFocus={e => setSearchFocused(true)}
                     onBlur={e => setSearchFocused(false)}
                 />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useSongListState = initialValue => {
+const useSongListState = (initialValue) => {
     const [songList, setSongList] = useState(initialValue);
 
     return {

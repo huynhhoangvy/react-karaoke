@@ -35,13 +35,13 @@ import {
 } from "reactstrap";
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+// import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
+// import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 import useForm from "app/useForm";
 import loginValidate from 'app/LoginFormValidationRules';
-import useServerMethod from 'app/server';
+// import useServerMethod from 'app/server';
 
-function Login () {
+function Login ( { postLoginData }) {
   // componentDidMount() {
   //   document.documentElement.scrollTop = 0;
   //   document.scrollingElement.scrollTop = 0;
@@ -50,7 +50,7 @@ function Login () {
 
   const myRef = useRef(null);
 
-  const { postLoginData } = useServerMethod();
+  // const { postLoginData } = useServerMethod();
 
   const {
     values,
@@ -61,12 +61,12 @@ function Login () {
 
   function login() {
     console.log('No errors, submit callback called! Print values: ', values);
-    postLoginData(values)
+    postLoginData(values);
   }
 
     return (
       <>
-        <DemoNavbar />
+        {/* <DemoNavbar /> */}
         <main ref={myRef}>
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">
@@ -214,7 +214,7 @@ function Login () {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        {/* <SimpleFooter /> */}
       </>
     );
   }

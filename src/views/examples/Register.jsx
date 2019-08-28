@@ -35,8 +35,8 @@ import {
 } from "reactstrap";
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+// import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
+// import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 import useForm from "app/useForm";
 import registerValidate from 'app/RegisterFormValidationRules';
 import useServerMethod from 'app/server';
@@ -66,7 +66,7 @@ function Register () {
   
     return (
       <>
-        <DemoNavbar />
+        {/* <DemoNavbar /> */}
         <main ref={myRef}>
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">
@@ -239,7 +239,7 @@ function Register () {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        {/* <SimpleFooter /> */}
       </>
     );
   }

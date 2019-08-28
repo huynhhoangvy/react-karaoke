@@ -17,82 +17,86 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import App from './App';
+import { CookiesProvider } from 'react-cookie';
 
-import "assets/vendor/nucleo/css/nucleo.css";
-import "assets/vendor/font-awesome/css/font-awesome.min.css";
-import "assets/scss/argon-design-system-react.scss";
+// import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+// import "assets/vendor/nucleo/css/nucleo.css";
+// import "assets/vendor/font-awesome/css/font-awesome.min.css";
+// import "assets/scss/argon-design-system-react.scss";
 
-import Index from "views/Index.jsx";
-import Landing from "views/examples/Landing.jsx";
-import Login from "views/examples/Login.jsx";
-import Profile from "views/examples/Profile.jsx";
-import Register from "views/examples/Register.jsx";
+// import Index from "views/Index.jsx";
+// import Landing from "views/examples/Landing.jsx";
+// import Login from "views/examples/Login.jsx";
+// import Profile from "views/examples/Profile.jsx";
+// import Register from "views/examples/Register.jsx";
 
-import Home from "views/examples/Home.jsx";
-import Test from "views/examples/Test"
+// import Home from "views/examples/Home.jsx";
+// import Test from "views/examples/Test"
 
 // import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
 // import CardsFooter from "components/Footers/CardsFooter.jsx";
 // import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 
 
-ReactDOM.render(
-  <BrowserRouter>
+ReactDOM.render(<CookiesProvider>
+                  <App />
+                </CookiesProvider>
+,document.getElementById("root"));
+  // <BrowserRouter>
 
-    {/* <DemoNavbar /> */}
+  //   {/* <DemoNavbar /> */}
     
-    <Switch>
+  //   <Switch>
       
-      <Route 
-      path="/" 
-      exact 
-      render={props => <Landing {...props} />} 
-      />
+  //     <Route 
+  //     path="/" 
+  //     exact 
+  //     render={props => <Landing {...props} />} 
+  //     />
 
-      <Route
-        path="/index"
-        exact
-        render={props => <Index {...props} />}
-      />
+  //     <Route
+  //       path="/index"
+  //       exact
+  //       render={props => <Index {...props} />}
+  //     />
 
-      <Route
-        path="/home"
-        exact
-        render={props => <Home {...props} />}
-      />
+  //     <Route
+  //       path="/home"
+  //       exact
+  //       render={props => <Home {...props} />}
+  //     />
 
-      <Route 
-      path="/login" 
-      exact 
-      render={props => <Login {...props} />} 
-      />
+  //     <Route 
+  //     path="/login" 
+  //     exact 
+  //     render={props => <Login {...props} />} 
+  //     />
 
-      <Route
-        path="/profile"
-        exact
-        render={props => <Profile {...props} />}
-      />
+  //     <Route
+  //       path="/profile"
+  //       exact
+  //       render={props => <Profile {...props} />}
+  //     />
 
-      <Route
-        path="/register"
-        exact
-        render={props => <Register {...props} />}
-      />
+  //     <Route
+  //       path="/register"
+  //       exact
+  //       render={props => <Register {...props} />}
+  //     />
 
-      <Route
-        path="/test"
-        exact
-        render={props => <Test {...props} />}
-      />
+  //     <Route
+  //       path="/test"
+  //       exact
+  //       render={props => <Test {...props} />}
+  //     />
 
-      <Redirect to="/" />
+  //     <Redirect to="/" />
 
-    </Switch>
+  //   </Switch>
 
-    {/* <SimpleFooter /> */}
+  //   {/* <SimpleFooter /> */}
 
-  </BrowserRouter>,
+  // </BrowserRouter>,
   
-  document.getElementById("root")
-);
+

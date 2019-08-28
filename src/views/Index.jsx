@@ -21,8 +21,8 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
-import CardsFooter from "components/Footers/CardsFooter.jsx";
+// import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
+// import CardsFooter from "components/Footers/CardsFooter.jsx";
 
 // index page sections
 import Hero from "./IndexSections/Hero.jsx";
@@ -55,7 +55,7 @@ class Index extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
+        {/* <DemoNavbar /> */}
         <main ref="main">
           <Hero />
           <Buttons />
@@ -85,12 +85,12 @@ class Index extends React.Component {
               <TooltipPopover />
             </Container>
           </section>
-          <Carousel />
+          {/* <Carousel /> */}
           <Icons />
           <Login />
           <Download />
         </main>
-        <CardsFooter />
+        {/* <CardsFooter /> */}
       </>
     );
   }

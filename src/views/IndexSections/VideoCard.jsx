@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 
 
-function VideoCard({ data, addSong, superAddSong }) {
+function VideoCard({ data, addSong, superAddSong, addSongToDatabase, user }) {
   // const [selectedSongList, setSelectedSongList] = useState([]);
 
   return (
@@ -25,13 +25,15 @@ function VideoCard({ data, addSong, superAddSong }) {
           />
           <CardBody>
             <CardTitle>
-              <a href={`https://www.youtube.com/watch?v=${data.id.videoId}`}>
+              <a href={`http://www.youtube.com/watch?v=${data.id.videoId}`}>
                 {data.snippet.title}
               </a>
             </CardTitle>
             <Button 
             onClick={() => {
               addSong({id: data.id.videoId, title: data.snippet.title});
+              console.log('print user: ', user);
+              addSongToDatabase({username: user, song_id: data.id.videoId, thumbnail: data.snippet.thumbnails.medium.url, title: data.snippet.title});
             }}
             >
               Add
@@ -39,6 +41,8 @@ function VideoCard({ data, addSong, superAddSong }) {
             <Button 
             onClick={() => {
               superAddSong({id: data.id.videoId, title: data.snippet.title});
+              console.log('print user: ', user);
+              addSongToDatabase({username: user, song_id: data.id.videoId});
             }}
             >
               Super Add
