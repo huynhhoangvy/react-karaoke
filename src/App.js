@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
 import DemoNavbar from "components/Navbars/DemoNavbar";
 import SimpleFooter from "components/Footers/SimpleFooter";
+
 import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/font-awesome/css/font-awesome.min.css";
 import "assets/scss/argon-design-system-react.scss";
+import './App.css';
 
 import Index from "views/Index.jsx";
 import Landing from "views/examples/Landing.jsx";
@@ -12,46 +14,51 @@ import Login from "views/examples/Login.jsx";
 import Profile from "views/examples/Profile.jsx";
 import Register from "views/examples/Register.jsx";
 
-import useServerMethod from 'app/server';
-import history from 'app/history';
+import useServerMethod from 'js/server';
+import history from 'js/history';
 
 import Home from "views/examples/Home.jsx";
 import Test from "views/examples/Test"
 
 import { useCookies } from 'react-cookie';
-import { useBeforeunload } from 'react-beforeunload';
+import useDataApi from 'js/useDataApi.js';
 
-export default function App() {
+function App() {
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
+
+    const [{ data, setData, isLoading, setIsLoading, isError, setIsError, nextPageToken, setNextPageToken }, doFetch] = useDataApi([], `https://www.googleapis.com/youtube/v3/search?key=AIzaSyAM5ukRQwsSybOOcRhsutGiocSMENpc7PU&part=snippet&maxResults=12&q=trinh,cong,son,karaoke`);
+
+    const [query, setQuery] = useState('');
 
     const [cookies, setCookie, removeCookie] = useCookies(['name']);
 
     const [user, setUser] = useState('guest');
 
     const [token, setToken] = useState();
-    
+
     const { postLoginData, logout, addSongToDatabase, getCurrentUser } = useServerMethod(setUser, setCookie, removeCookie, setToken);
 
     useEffect(() => {
         if (cookies.sessionToken) {
-            setToken(cookies.sessionToken);
-            console.log('token has been set: ', token)
-            getCurrentUser(token);
-            console.log('get user');
+            console.log('token exists: ', cookies.sessionToken);
+            getCurrentUser(cookies.sessionToken);
         }
-        }, [token]);
-
-    // const handleOnBeforeUnload = () => {
-    //     getCurrentUser();
-    // }
-
-    // useBeforeunload(() => getCurrentUser());
-    // useBeforeunload(event => event.preventDefault());
+    },[])
 
     return (
         <Router history={history}>
-            {console.log('rendered!!!!!!!!!!!!!')}
-            {console.log('print token in appjs: ', token)}
-            <DemoNavbar user={user} logout={logout} token={token} />
+    {console.log('print pathname: ', history.location.pathname)}
+            <DemoNavbar
+                user={user}
+                logout={logout}
+                token={token}
+                query={query}
+                setQuery={setQuery}
+                doFetch={doFetch}
+            />
             <Switch>
 
                 <Route
@@ -69,7 +76,20 @@ export default function App() {
                 <Route
                     path="/home"
                     exact
-                    render={props => <Home {...props} user={user} addSongToDatabase={addSongToDatabase} />}
+                    render={props => <Home {...props}
+                        user={user}
+                        addSongToDatabase={addSongToDatabase}
+                        query={query}
+                        setQuery={setQuery}
+                        data={data}
+                        setData={setData}
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
+                        isError={isError}
+                        setIsError={setIsError}
+                        nextPageToken={nextPageToken}
+                        setNextPageToken={setNextPageToken}
+                    />}
                 />
 
                 <Route
@@ -105,3 +125,5 @@ export default function App() {
 
     );
 };
+
+export default withRouter(App);

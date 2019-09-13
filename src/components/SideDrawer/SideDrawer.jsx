@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import {Button} from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 import './SideDrawer.css';
 
@@ -53,14 +53,11 @@ export default function SideDrawer(props) {
     }
 
     return (
-        <div className={drawerClasses}>
-            {console.log('is songList empty: ', Array.isArray(props.songList))}
-            <Button onClick={() => props.getAlert()}>Next</Button>
+        <Container className={drawerClasses}>
             {!props.songList.length
-                ? <h1>no song added</h1>
+                ? <h4>No Song Added!</h4>
                 :
                 <DragDropContext onDragEnd={onDragEnd}>
-                    {console.log(props.songList)}
                     <div>
                         <Droppable droppableId="droppable">
                             {(provided, snapshot) => (
@@ -98,6 +95,6 @@ export default function SideDrawer(props) {
                     </div>
                 </DragDropContext>
             }
-        </div>
+        </Container>
     );
 };

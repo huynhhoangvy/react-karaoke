@@ -1,23 +1,5 @@
-/*!
+import React, { useRef, useEffect } from "react";
 
-=========================================================
-* Argon Design System React - v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React, { useRef, useState } from "react";
-
-// reactstrap components
 import {
   Button,
   Card,
@@ -34,19 +16,17 @@ import {
   Col
 } from "reactstrap";
 
-// core components
-// import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
-// import SimpleFooter from "components/Footers/SimpleFooter.jsx";
-import useForm from "app/useForm";
-import registerValidate from 'app/RegisterFormValidationRules';
-import useServerMethod from 'app/server';
+import useForm from "js/useForm";
+import registerValidate from 'js/RegisterFormValidationRules';
+import useServerMethod from 'js/server';
 
 function Register () {
-  // componentDidMount() {
-  //   document.documentElement.scrollTop = 0;
-  //   document.scrollingElement.scrollTop = 0;
-  //   this.refs.main.scrollTop = 0;
-  // }
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+    myRef.current.scrollTo(0, 0);
+  }, []);
 
   const myRef = useRef(null);
 
@@ -60,7 +40,6 @@ function Register () {
   } = useForm(register, registerValidate);
 
   function register() {
-    console.log('No errors, submit callback called! ', values);
     postRegisterData(values);
   }
   

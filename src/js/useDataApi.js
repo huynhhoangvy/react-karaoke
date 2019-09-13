@@ -6,14 +6,14 @@ const useDataApi = (initialData, initialUrl) => {
     const [url, setUrl] = useState(initialUrl);
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
+    const [nextPageToken, setNextPageToken] = useState('');
   
     useEffect(() => {
     const fetchData = async () => {
       setIsError(false);
-      // setIsLoading(true);
       try {
         const result = await axios(url);
-        console.log('result: ', result);
+        setNextPageToken(result.data.nextPageToken);
         setData(result.data.items);
       } catch(error) {
         setIsError(true);
@@ -22,10 +22,9 @@ const useDataApi = (initialData, initialUrl) => {
     };
     
     fetchData();
-    console.log('data dau roi dit me: ', data);
     }, [url]);
   
-    return [{ data, isLoading, isError }, setUrl]
+    return [{ data, setData, isLoading, setIsLoading, isError, setIsError, nextPageToken, setNextPageToken }, setUrl]
   }  
 
 export default useDataApi;

@@ -15,37 +15,19 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 
 // reactstrap components
-import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
+import { Button, Container } from "reactstrap";
 
 import YouTube from 'react-youtube';
 
-const items = [
-  {
-    src: require("assets/img/theme/img-1-1200x1000.jpg"),
-    altText: "",
-    caption: "",
-    header: ""
-  },
-  {
-    src: require("assets/img/theme/img-2-1200x1000.jpg"),
-    altText: "",
-    caption: "",
-    header: ""
-  }
-];
-
 const Carousel = forwardRef(({ songList, removeSong, getNextSongId }, ref) => { 
-  console.log('ABC: ', songList.length)
 
   const [nextSongId, setNextSongId] = useState('t-8_FIFcefo');
-  // const [nextSongId, setNextSongId] = useState(getNextSongId());
   const [isPlayerEnded, setIsPlayerEnded] = useState(false);
 
   const onPlayerReady = (event) => {
-    console.log('heloooooooooooooooooooooooooooo')
     event.target.playVideo();
   }
   
@@ -60,8 +42,6 @@ const Carousel = forwardRef(({ songList, removeSong, getNextSongId }, ref) => {
     removeSong(0);
   }
 
-  console.log('isplayerended: ', isPlayerEnded, ' songlist.length ', songList.length);
-  console.log('conditions: ', isPlayerEnded && songList.length > 0)
 
   useEffect(() => {
     if (isPlayerEnded && songList.length > 0) {
@@ -71,32 +51,24 @@ const Carousel = forwardRef(({ songList, removeSong, getNextSongId }, ref) => {
     }, [getNextSongId()]);
 
 
-  console.log('when?????????')
 
   const onPlayerStateChange = event => {
-    console.log('print event: ', event)
     switch (event.data) {
       case -1:
-        console.log('unstarted');
         break;
       case 0:
-        console.log('video ended');
         setNextSongId(() => getNextSongId());
         removeSong(0);
         setIsPlayerEnded(true);
         break;
       case 1:
-        console.log('video playing from ');
         setIsPlayerEnded(false);
         break;
       case 2:
-        console.log('video paused at ');
         break;
       case 3:
-        console.log('video is buffering ');
         break;
       case 5:
-        console.log('video cued ');
         break;
       default:
         return;
@@ -113,8 +85,6 @@ const Carousel = forwardRef(({ songList, removeSong, getNextSongId }, ref) => {
 
   return (
     <>
-    {console.log(isPlayerEnded ? 'ENDED!!!!!!!!!!!!' : 'PLAYING!!!!!!!!!!!!!!')}
-    {console.log('print songList from carousel: ', songList)}
       <section className="section section-shaped">
         <div className="shape shape-style-1 shape-default">
           <span />
@@ -125,41 +95,23 @@ const Carousel = forwardRef(({ songList, removeSong, getNextSongId }, ref) => {
           <span />
         </div>
         <Container className="py-md">
-          <Row className="justify-content-between align-items-center">
-            <Col className="mb-5 mb-lg-0" lg="5">
-              {console.log('nextsongid: ', nextSongId)}
+          {/* <Row className="justify-content-between align-items-center"> */}
+            {/* <Col className="mb-5 mb-lg-0" lg="5"> */}
+            <div className="d-flex justify-content-center">
+              <div>
               <YouTube
+                rel={0}
                 videoId={nextSongId}
                 opts={opts}
                 onReady={onPlayerReady}
                 onStateChange={onPlayerStateChange}
               />
               <Button onClick={() => playNextSong()}>Skip</Button>
-              {/* <h1 className="text-white font-weight-light">
-                  Bootstrap carousel
-                </h1>
-                <p className="lead text-white mt-4">
-                  Argon Design System comes with four pre-built pages to help
-                  you get started faster. You can change the text and images and
-                  you're good to go.
-                </p>
-                <Button
-                  className="btn-white mt-4"
-                  color="default"
-                  href=""
-                >
-                  See all components
-                </Button>
-              </Col>
-              <Col className="mb-lg-auto" lg="6">
-                <div className="rounded shadow-lg overflow-hidden transform-perspective-right">
-                  <UncontrolledCarousel items={items} />
-                </div> */}
-
-            </Col>
-          </Row>
+              </div>
+              </div>
+            {/* </Col> */}
+          {/* </Row> */}
         </Container>
-        {/* SVG separator */}
         <div className="separator separator-bottom separator-skew">
           <svg
             xmlns="http://www.w3.org/2000/svg"

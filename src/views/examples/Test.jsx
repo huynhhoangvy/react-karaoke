@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Button, Container } from 'reactstrap'
 
-import useServerMethod from 'app/server'
+import useServerMethod from 'js/server'
 
 export default function Test () {
 
-    const { foo, post, testPost, put } = useServerMethod();
+    const { testPost } = useServerMethod();
 
     return (
         <Container>
