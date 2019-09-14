@@ -5,7 +5,7 @@ export default function useServerMethod (setUser, setCookie, removeCookie, setTo
     return {
         getCurrentUser: async (token) => {
             try {
-                const url = 'http://flask-karaoke.herokuapp.com/users/current';
+                const url = 'https://flask-karaoke.herokuapp.com/users/current';
                 const settings = {
                     method: 'GET',
                     headers: {
@@ -31,7 +31,7 @@ export default function useServerMethod (setUser, setCookie, removeCookie, setTo
         },
         postRegisterData: async (data) => {
             try {
-                const url = 'http://flask-karaoke.herokuapp.com/users/register';
+                const url = 'https://flask-karaoke.herokuapp.com/users/register';
                 const settings = {
                     method: 'POST',
                     headers: {
@@ -56,7 +56,7 @@ export default function useServerMethod (setUser, setCookie, removeCookie, setTo
         },
         postLoginData: async (data) => {
             try {
-                const url = 'http://flask-karaoke.herokuapp.com/users/login';
+                const url = 'https://flask-karaoke.herokuapp.com/users/login';
                 const settings = {
                     method: 'POST',
                     headers: {
@@ -84,7 +84,7 @@ export default function useServerMethod (setUser, setCookie, removeCookie, setTo
         },
         logout: async (token) => {
             try {
-                const url = 'http://flask-karaoke.herokuapp.com/users/logout';
+                const url = 'https://flask-karaoke.herokuapp.com/users/logout';
                 const settings = {
                     method: 'GET',
                     headers: {
@@ -111,7 +111,7 @@ export default function useServerMethod (setUser, setCookie, removeCookie, setTo
         },
         addSongToDatabase: async (data) => {
             try {
-                const url = 'http://flask-karaoke.herokuapp.com/songs/add';
+                const url = 'https://flask-karaoke.herokuapp.com/songs/add';
                 const settings = {
                     method: 'POST',
                     headers: {
