@@ -62,7 +62,7 @@ function App() {
             <Switch>
 
                 <Route
-                    path="/"
+                    path="/landing"
                     exact
                     render={props => <Landing {...props} />}
                 />
@@ -74,7 +74,7 @@ function App() {
                 />
 
                 <Route
-                    path="/home"
+                    path="/"
                     exact
                     render={props => <Home {...props}
                         user={user}

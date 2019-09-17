@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Headroom from "headroom.js";
-import classnames from 'classnames'
+import classnames from 'classnames';
 
 import {
   Button,
@@ -48,7 +48,8 @@ function DemoNavbar({ user, logout, token, query, setQuery, doFetch }) {
             <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
               <img
                 alt="..."
-                src={require("assets/img/brand/argon-react-white.png")}
+                src={require("assets/img/karaoke.png")}
+                // src={require("assets/img/brand/argon-react-white.png")}
               />
             </NavbarBrand>
             <button className="navbar-toggler" id="navbar_global">
@@ -73,8 +74,13 @@ function DemoNavbar({ user, logout, token, query, setQuery, doFetch }) {
                   </Col>
                 </Row>
               </div>
-              <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                <UncontrolledDropdown nav>
+              {/* <Nav className="navbar-nav-hover align-items-lg-center" navbar>
+              <NavItem>
+                    <NavLink href="#pablo" to="/" tag={Link}>
+                      Home<span className="sr-only">(current)</span>
+                    </NavLink>
+                  </NavItem> */}
+                {/* <UncontrolledDropdown nav>
                   <DropdownToggle nav>
                     <i className="ni ni-collection d-lg-none mr-1" />
                     <span className="nav-link-inner--text">Examples</span>
@@ -87,8 +93,8 @@ function DemoNavbar({ user, logout, token, query, setQuery, doFetch }) {
                       Home
                       </DropdownItem>
                   </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
+                </UncontrolledDropdown> */}
+              {/* </Nav> */}
               <Nav className="align-items-lg-center ml-lg-auto navbar-nav-hover" navbar><div>
                 <Form
                   style={{height: "44px"}}
