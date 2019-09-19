@@ -8,6 +8,7 @@
 
 ## Live Demo
 
+[Netlify](https://k-raoke.netlify.com/)
 [Heroku](https://k-raoke.herokuapp.com/)
 
 ## Motivation
