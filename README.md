@@ -1,6 +1,6 @@
 ## K-raoke
 
-** A React app to fulfill people's singing desire. The back-end of the app is built with Python/ Flask, [view back-end code.](https://github.com/huynhhoangvy/flask-karaoke) **
+**A React app to fulfill people's singing desire. The back-end of the app is built with Python/ Flask, [view back-end code.](https://github.com/huynhhoangvy/flask-karaoke)**
 
 ## Screenshots
 
@@ -19,7 +19,7 @@
 
 ## Tech/framework used
 
-** Built with **
+**Built with**
 - [ReactJS](https://reactjs.org/)
 - [Argon System Design](https://www.creative-tim.com/product/argon-design-system-react)
 - [React Youtube](https://www.npmjs.com/package/react-youtube)
@@ -27,10 +27,10 @@
 
 ## Features
 
-* ** Register, Log in, Log out. **
-* ** Selected songs side drawer & drag n drop control. **
-* ** Infinity scroll. **
-* ** Autoplay songs in the list. **
+* **Register, Log in, Log out.**
+* **Selected songs side drawer & drag n drop control.**
+* **Infinity scroll.**
+* **Autoplay songs in the list.**
 
 ## Contact me
 
